@@ -1,4 +1,4 @@
 
-public class Gaurd extends Player{
+public class Gaurd {
 
 }

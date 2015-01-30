@@ -1,7 +1,13 @@
 import java.util.Scanner;
+import java.awt.*;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class PlayGame
 	{
+	private static final long serialVersionUID = 1L;
+	static JFrame frame = new JFrame();
 	static String name;
 	static int userPlayer, computerPlayer;
 	static boolean keepPlaying = true;
@@ -9,226 +15,217 @@ public class PlayGame
 	static double userShotPercentage, computerShotPercentage;
 	static String userShotOutcome, computerShotOutCome;
 	static int userTotalMisses, computerTotalMisses;
-	static String garbageVariable , garbageVariable2;
 
 	public static void greetPlayer()
 		{
-		System.out.println("Hello, whats your name?");
-		Scanner userInput1 = new Scanner(System.in);
-		name = userInput1.nextLine();
-		System.out.println("Nice to meet you " + name + "!");
-		System.out.println(name + ", we are going to play PIG Basketball.");
-		System.out.println("");
+		name = JOptionPane.showInputDialog("What is your name?"); 
+		JOptionPane.showMessageDialog(frame, "Nice to meet you " + name + "!" + 
+				"\n" + name + ", we are going to play PIG Basketball.");
 		}
 
 	public static void shootShots()
 		{
-		int counter = 1;
-		System.out
-				.println("Which player would you like to play with. Choose the number according to the player.");
-		for (Player showPlayers : DataOfPlayers.dataOfPlayers)
-			{
-			System.out.println("(" + counter + ")"
-					+ showPlayers.getNameOfPlayer());
-			counter++;
-			}
-		Scanner userInput = new Scanner(System.in);
-		userPlayer = userInput.nextInt();
+		Object[] options = {DataOfPlayers.dataOfPlayers.get(0).getNameOfPlayer(), DataOfPlayers.dataOfPlayers.get(1).getNameOfPlayer()};
+		userPlayer = JOptionPane.showOptionDialog(frame, "Which player would you like to play with?",
+				"Your Player",
+				JOptionPane.YES_NO_CANCEL_OPTION,
+				JOptionPane.QUESTION_MESSAGE,
+				null, options, options[1]);
 
-		if (userPlayer == 1)
-			{
-			computerPlayer = 2;
-			} else
+		if (userPlayer == 0)
 			{
 			computerPlayer = 1;
 			}
-		//System.out.println("You");
-
-		String[] whichShot =
-			{ "Free Throw", "Three Pointer", "Mid Range Shot", "Dunk",
-					"Backwards Shot" };
+		else
+			{
+			computerPlayer = 0;
+			}
 
 		do
 			{
-			System.out.println("");
 			double userShotRandomNumber = (Math.random() * 100);
 			double computerShotRandomNumber = (Math.random() * 100);
-			System.out.println("Which shot would you like to take?");
-			int counter2 = 1;
-			for (String printShot : whichShot)
-				{
-				System.out.print("(" + counter2 + ")" + printShot + "   ");
-				counter2++;
-				}
-			Scanner userInput1 = new Scanner(System.in);
-			userShotChoice = userInput1.nextInt();
+			Object[] whichShot =
+						{ "Free Throw", "Three Pointer", "Mid Range Shot", "Dunk",
+								"Backwards Shot" };
+			userShotChoice = JOptionPane.showOptionDialog(frame, "Which shot would you like to take?",
+					"Choose Shot",
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null, whichShot, whichShot[4]);
 
 			switch (userShotChoice)
 				{
+				case 0:
+					{
+					userShotPercentage = DataOfPlayers.dataOfPlayers.get(
+							userPlayer ).getFreeThrowPercentage();
+					break;
+					}
 				case 1:
 					{
 					userShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							userPlayer - 1).getFreeThrowPercentage();
+							userPlayer ).getThreePointPercentage();
 					break;
 					}
 				case 2:
 					{
 					userShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							userPlayer - 1).getThreePointPercentage();
+							userPlayer ).getMidRangePercentage();
 					break;
 					}
 				case 3:
 					{
 					userShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							userPlayer - 1).getMidRangePercentage();
+							userPlayer ).getDunkPercentage();
 					break;
 					}
 				case 4:
 					{
 					userShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							userPlayer - 1).getDunkPercentage();
-					break;
-					}
-				case 5:
-					{
-					userShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							userPlayer - 1).getBackwardsShotPercentage();
+							userPlayer ).getBackwardsShotPercentage();
 					break;
 					}
 				}
-			System.out.println("");
-			if (userShotChoice==4)
+			
+			if (userShotChoice==3)
 				{
-				System.out.println("Are you ready to try to Dunk?(Press Enter)");
+				JOptionPane.showMessageDialog(frame, "Are you ready to try to Dunk?");
 				}
 			else
 				{
-				System.out.println("Are you ready to shoot the " + whichShot[userShotChoice - 1] + "?(Press Enter)" );
+				JOptionPane.showMessageDialog(frame, "Are you ready to shoot the " + whichShot[userShotChoice] + "?");
 				}
-			Scanner userInput2 = new Scanner(System.in);
-			garbageVariable = userInput2.nextLine();
+			
 			if (userShotPercentage >= userShotRandomNumber)
 				{
-				System.out.println("Nice you made the "
-						+ whichShot[userShotChoice - 1] + ".");
+				JOptionPane.showMessageDialog(frame, "Nice you made the "
+						+ whichShot[userShotChoice] + ".");
 				userShotOutcome = "make";
-				} else
+				} 
+			else
 				{
-				System.out.println("Sorry you missed the "
-						+ whichShot[userShotChoice - 1] + ".");
+				JOptionPane.showMessageDialog(frame, "Sorry you missed the "
+						+ whichShot[userShotChoice] + ".");
 				userShotOutcome = "miss";
 				}
 
 			computerShotChoice = userShotChoice;
 			switch (computerShotChoice)
 				{
+				case 0:
+					{
+					computerShotPercentage = DataOfPlayers.dataOfPlayers.get(
+							computerPlayer ).getFreeThrowPercentage();
+					break;
+					}
 				case 1:
 					{
 					computerShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							computerPlayer - 1).getFreeThrowPercentage();
+							computerPlayer ).getThreePointPercentage();
 					break;
 					}
 				case 2:
 					{
 					computerShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							computerPlayer - 1).getThreePointPercentage();
+							computerPlayer ).getMidRangePercentage();
 					break;
 					}
 				case 3:
 					{
 					computerShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							computerPlayer - 1).getMidRangePercentage();
+							computerPlayer ).getDunkPercentage();
 					break;
 					}
 				case 4:
 					{
 					computerShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							computerPlayer - 1).getDunkPercentage();
-					break;
-					}
-				case 5:
-					{
-					computerShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							computerPlayer - 1).getBackwardsShotPercentage();
+							computerPlayer ).getBackwardsShotPercentage();
 					break;
 					}
 				}
-			System.out.println("");
-			if (computerShotChoice==4)
+			
+			if (computerShotChoice==3)
 				{
-				System.out.println("Your opponent is ready to try to Dunk?(Press Enter)");
+				JOptionPane.showMessageDialog(frame, "Your opponent is ready to try to Dunk?");
 				}
 			else
 				{
-				System.out.println("Your opponent is about to shoot the " + whichShot[userShotChoice - 1] + "?(Press Enter)" );				}
+				JOptionPane.showMessageDialog(frame, "Your opponent is about to shoot the " + whichShot[userShotChoice] + "?" );				
+				}
 			
-			Scanner userInput3 = new Scanner(System.in);
-			garbageVariable2 = userInput3.nextLine();
+		
 			if (computerShotPercentage >= computerShotRandomNumber)
 				{
-				System.out.println("Your opponent made the "
-						+ whichShot[userShotChoice - 1] + ".");
+				JOptionPane.showMessageDialog(frame,"Your opponent made the "
+						+ whichShot[userShotChoice] + ".");
 				computerShotOutCome = "make";
-				} else
+				} 
+			else
 				{
-				System.out.println("Your opponent missed the "
-						+ whichShot[userShotChoice - 1] + ".");
+				JOptionPane.showMessageDialog(frame, "Your opponent missed the "
+						+ whichShot[userShotChoice] + ".");
 				computerShotOutCome = "miss";
 				}
-			System.out.println("");
+			
 			if (userShotOutcome.equals("make")
 					&& computerShotOutCome.equals("make"))
 				{
-				System.out.println("Since you both made the "
-						+ whichShot[userShotChoice - 1]
-						+ " no one gets a Letter.");
-				} else if (userShotOutcome.equals("make")
+				JOptionPane.showMessageDialog(frame, "Since you both made the "
+						+ whichShot[userShotChoice]
+						+ ", no one gets a Letter.");
+				} 
+			else if (userShotOutcome.equals("make")
 					&& computerShotOutCome.equals("miss"))
 				{
-				System.out.println("Since you made the "
-						+ whichShot[userShotChoice - 1]
+				JOptionPane.showMessageDialog(frame,"Since you made the "
+						+ whichShot[userShotChoice]
 						+ " and he missed. He gets a Letter.");
 				computerTotalMisses++;
-				} else if (userShotOutcome.equals("miss")
+				} 
+			else if (userShotOutcome.equals("miss")
 					&& computerShotOutCome.equals("make"))
 				{
-				System.out
-						.println("Since you missed the "
-								+ whichShot[userShotChoice - 1]
+				JOptionPane.showMessageDialog(frame,"Since you missed the "
+								+ whichShot[userShotChoice]
 								+ " and he made the "
-								+ whichShot[userShotChoice - 1]
+								+ whichShot[userShotChoice]
 								+ ". You get a Letter.");
 				userTotalMisses++;
-				} else
+				} 
+			else
 				{
-				System.out.println("Both of you missed the "
-						+ whichShot[userShotChoice - 1]
+				JOptionPane.showMessageDialog(frame,"Both of you missed the "
+						+ whichShot[userShotChoice]
 						+ ". So neither gets a letter.");
 				}
-			// System.out.println("userPercent" + userShotPercentage);
-			// System.out.println("userrandom" + userShotRandomNumber);
-			// System.out.println("compPercent" + computerShotPercentage);
-			// System.out.println("comprandom " + computerShotRandomNumber);
-			// System.out.println(computerPlayer);
-			// System.out.println(computerShotChoice);
+			
+			//JOptionPane.showMessageDialog(frame, "userPercent" + userShotPercentage
+			//		+ "\n" + "userrandom" + userShotRandomNumber
+			//		+ "\n" + "compPercent" + computerShotPercentage
+			//		+ "\n" + "comprandom " + computerShotRandomNumber
+			//		+ "\n" + "compPlayer#" + computerPlayer
+			//		+ "\n" + "compShot#" + computerShotChoice
+			//		+ "\n" + "userPlayer#" + userPlayer
+			//		+ "\n" + "userShot#" + userShotChoice);
 
 			switch (userTotalMisses)
 				{
 				case 1:
 					{
-					System.out.println("Your total letters are: P ");
+					JOptionPane.showMessageDialog(frame, "Your total letters are: P ");
 					break;
 					}
 				case 2:
 					{
-					System.out.println("Your total letters are: PI");
+					JOptionPane.showMessageDialog(frame,"Your total letters are: PI");
 					break;
 					}
 				case 3:
 					{
-					System.out
-							.println("Dang man. Sorry but that was your last letter. You have PIG and lost the game.");
+					JOptionPane.showMessageDialog(frame, "Dang man. Sorry but that was your last letter. You have PIG and lost the game.");
 					keepPlaying = false;
+					System.exit(0);
 					break;
 					}
 				}
@@ -237,19 +234,19 @@ public class PlayGame
 				{
 				case 1:
 					{
-					System.out.println("Opponents total letters are : P");
+					JOptionPane.showMessageDialog(frame,"Opponents total letters are : P");
 					break;
 					}
 				case 2:
 					{
-					System.out.println("Opponents total letters are : PI");
+					JOptionPane.showMessageDialog(frame,"Opponents total letters are : PI");
 					break;
 					}
 				case 3:
 					{
-					System.out
-							.println("congratulations man. That was his last Letter and he has recived PIG. You have won the GAME!.");
+					JOptionPane.showMessageDialog(frame,"Congratulations man. That was his last Letter and he has recived PIG. You have won the GAME!.");
 					keepPlaying = false;
+					System.exit(0);
 					break;
 					}
 				}

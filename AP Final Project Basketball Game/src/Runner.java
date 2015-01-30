@@ -1,4 +1,3 @@
-//Steve Tointon Midterm Project 
 public class Runner
 	{
 

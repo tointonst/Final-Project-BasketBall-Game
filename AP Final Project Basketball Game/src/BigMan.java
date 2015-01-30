@@ -1,4 +1,4 @@
 
-public class BigMan extends Player{
+public class BigMan {
 
 }

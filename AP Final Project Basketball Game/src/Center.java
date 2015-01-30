@@ -1,4 +1,4 @@
 
-public class Center extends BigMan{
+public class Center extends BigMan {
 
 }

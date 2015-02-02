@@ -1,11 +1,11 @@
 public class Player
 	{
-	private String nameOfPlayer;
-	private double freeThrowPercentage;
-	private double threePointPercentage;
-	private double midRangePercentage;
-	private double dunkPercentage;
-	private double backwardsShotPercentage;
+	protected String nameOfPlayer;
+	protected double freeThrowPercentage;
+	protected double threePointPercentage;
+	protected double midRangePercentage;
+	protected double dunkPercentage;
+	protected double backwardsShotPercentage;
 
 	public Player(String nop, double ftp, double tpp, double mrp, double dp,
 			double dsp)

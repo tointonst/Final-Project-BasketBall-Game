@@ -1,11 +1,18 @@
 
 public class Center extends BigMan {
 
-	public Center(String nop, double ftp, double tpp, double mrp, double dp,
-			double dsp)
+    protected double blockShotPersentage;
+	
+	public Center(String nop, double ftp, double tpp, double mrp, double lp,
+			boolean hh, double bsp)
 		{
-		super(nop, ftp, tpp, mrp, dp, dsp);
-		// TODO Auto-generated constructor stub
+		super(nop, ftp, tpp, mrp, lp, hh);
+		blockShotPersentage = bsp;
 		}
 
-}
+	
+
+	
+		}
+
+

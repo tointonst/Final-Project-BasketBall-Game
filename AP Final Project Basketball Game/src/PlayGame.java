@@ -1,8 +1,15 @@
-import java.util.Scanner;
-import java.awt.*;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class PlayGame
 	{
@@ -20,17 +27,65 @@ public class PlayGame
 		{
 		name = JOptionPane.showInputDialog("What is your name?"); 
 		JOptionPane.showMessageDialog(frame, "Nice to meet you " + name + "!" + 
-				"\n" + name + ", we are going to play PIG Basketball.");
+				"\n" + name + ", we are going to play 3 on 3 Basketball.");
 		}
-
-	public static void shootShots()
+	public static void makeTeam(ArrayList<Player> dataOfPlayers)
 		{
-		Object[] options = {DataOfPlayers.dataOfPlayers.get(0).getNameOfPlayer(), DataOfPlayers.dataOfPlayers.get(1).getNameOfPlayer()};
+	    
+		Object[] options =  new Object[dataOfPlayers.size()];
+		for(int i =0; i< dataOfPlayers.size(); i++)
+			{
+			options[0] = dataOfPlayers.get(0).getNameOfPlayer();
+			}
 		userPlayer = JOptionPane.showOptionDialog(frame, "Which player would you like to play with?",
 				"Your Player",
 				JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE,
-				null, options, options[1]);
+				null, options, options[2]);
+		}
+	
+	public static void test()
+		{
+		final JFrame frame = new JFrame("Select Your Animals");
+		frame.setSize(400, 200);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null); //Sets JPanel to center of screen 
+		
+		String[] iii = new String[] {"Ant", "Elephant", "Lion", "Hippopatamus"}; 
+		JButton button = new JButton("Enter");
+		final JComboBox<String> dropdown = new JComboBox<String>(iii);
+		final TextField txtfield = new TextField(20);
+		final JLabel words = new JLabel("ANIMALS:");
+		
+		final JPanel panel = new JPanel();
+		panel.setBackground(Color.LIGHT_GRAY);
+		frame.add(panel);
+		panel.add(words);
+		panel.add(dropdown);
+		panel.add(txtfield);
+		panel.add(button);
+		button.addActionListener(new ActionListener()
+			{
+			public void actionPerformed(ActionEvent arg0) 
+				{
+				System.out.println(dropdown.getSelectedItem());
+				System.out.println(dropdown.getSelectedIndex());
+				System.out.println(txtfield.getText());
+				}
+			});
+		
+		frame.setVisible(true);
+		}
+
+	public static void shootShots()
+		{
+		Object[] options = {DataOfPlayers.dataOfPlayers.get(0).getNameOfPlayer(), DataOfPlayers.dataOfPlayers.get(1).getNameOfPlayer(), DataOfPlayers.dataOfPlayers.get(2).getNameOfPlayer()};
+		userPlayer = JOptionPane.showOptionDialog(frame, "Which player would you like to play with?",
+				"Your Player",
+				JOptionPane.YES_NO_CANCEL_OPTION,
+				JOptionPane.QUESTION_MESSAGE,
+				null, options, options[2]);
 
 		if (userPlayer == 0)
 			{

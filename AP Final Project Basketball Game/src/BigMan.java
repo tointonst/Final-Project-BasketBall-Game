@@ -1,11 +1,14 @@
 
 public class BigMan extends Player{
 
-	public BigMan(String nop, double ftp, double tpp, double mrp, double dp,
-			double dsp)
+    protected boolean hasHeight = true;
+    
+	public BigMan(String nop, double ftp, double tpp, double mrp, double lp, boolean hh)
 		{
-		super(nop, ftp, tpp, mrp, dp, dsp);
-		// TODO Auto-generated constructor stub
+		super(nop, ftp, tpp, mrp, lp);
+		hasHeight = hh;
 		}
+
+	
 
 }

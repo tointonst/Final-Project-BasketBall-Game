@@ -4,18 +4,17 @@ public class Player
 	protected double freeThrowPercentage;
 	protected double threePointPercentage;
 	protected double midRangePercentage;
-	protected double dunkPercentage;
-	protected double backwardsShotPercentage;
+	protected double layupPercentage;
 
-	public Player(String nop, double ftp, double tpp, double mrp, double dp,
-			double dsp)
+
+	public Player(String nop, double ftp, double tpp, double mrp, double lp
+			)
 		{
 		nameOfPlayer = nop;
 		freeThrowPercentage = ftp;
 		threePointPercentage = tpp;
 		midRangePercentage = mrp;
-		dunkPercentage = dp;
-		backwardsShotPercentage = dsp;
+		layupPercentage = lp;
 		}
 
 	public String getNameOfPlayer()
@@ -38,14 +37,9 @@ public class Player
 		return midRangePercentage;
 		}
 
-	public double getDunkPercentage()
+	public double getLayupPercentage()
 		{
-		return dunkPercentage;
-		}
-
-	public double getBackwardsShotPercentage()
-		{
-		return backwardsShotPercentage;
+		return layupPercentage;
 		}
 
 	public void setNameOfPlayer(String nameOfPlayer)
@@ -67,12 +61,9 @@ public class Player
 		this.midRangePercentage = midRangePercentage;
 		}
 	
-	public void setDunkPercentage(double dunkPercentage)
+	public void setLayupPercentage(double dunkPercentage)
 		{
-		this.dunkPercentage = dunkPercentage;
+		this.layupPercentage = dunkPercentage;
 		}
-	public void setBackwardsShotPercentage(double backwardsShotPercentage)
-		{
-		this.backwardsShotPercentage = backwardsShotPercentage;
-		}
+	
 	}

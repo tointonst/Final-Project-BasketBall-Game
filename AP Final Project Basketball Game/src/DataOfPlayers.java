@@ -6,7 +6,7 @@ public class DataOfPlayers extends Player
 	public DataOfPlayers(String nop, double ftp, double tpp, double mrp,
 			double lp)
 		{
-		super(nop, ftp, tpp, mrp, lp);
+		super(nop, nop, ftp, tpp, mrp, lp);
 		// TODO Auto-generated constructor stub
 		}
 

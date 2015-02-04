@@ -31,17 +31,34 @@ public class PlayGame
 		}
 	public static void makeTeam(ArrayList<Player> dataOfPlayers)
 		{
-	    
-		Object[] options =  new Object[dataOfPlayers.size()];
-		for(int i =0; i< dataOfPlayers.size(); i++)
+	    int teamCounter=0;
+	    int peopleCounter = dataOfPlayers.size()-1;
+	    ArrayList<Player> myTeam = new ArrayList<Player>();
+	    do
+	    	{
+	    	Object[] options =  new Object[dataOfPlayers.size()];
+			for(int i =0; i< dataOfPlayers.size(); i++)
+				{
+				options[i] = dataOfPlayers.get(i).getNameOfPlayer();
+				}
+			userPlayer = JOptionPane.showOptionDialog(frame, "Which player would you like to play with?",
+					"Your Player",
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null, options, options[peopleCounter]);
+			peopleCounter--;
+			myTeam.add(dataOfPlayers.get(userPlayer));
+			dataOfPlayers.remove(userPlayer);
+			teamCounter++;
+			
+			
+			
+	    	}  while(teamCounter<3);
+	  
+	    for(int i =0; i<myTeam.size(); i++)
 			{
-			options[0] = dataOfPlayers.get(0).getNameOfPlayer();
+			System.out.println(myTeam.get(i).getNameOfPlayer() + myTeam.get(i).getFreeThrowPercentage() );
 			}
-		userPlayer = JOptionPane.showOptionDialog(frame, "Which player would you like to play with?",
-				"Your Player",
-				JOptionPane.YES_NO_CANCEL_OPTION,
-				JOptionPane.QUESTION_MESSAGE,
-				null, options, options[2]);
 		}
 	
 	public static void test()

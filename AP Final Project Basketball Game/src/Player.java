@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Player
 	{
 	protected String nameOfPlayer;
@@ -5,7 +7,8 @@ public class Player
 	protected double threePointPercentage;
 	protected double midRangePercentage;
 	protected double layupPercentage;
-
+  
+	protected static ArrayList<Player> dataOfPlayers = new ArrayList<Player>();
 
 	public Player(String nop, double ftp, double tpp, double mrp, double lp
 			)

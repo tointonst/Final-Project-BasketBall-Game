@@ -5,11 +5,9 @@ public class Runner
 
 	public static void main(String[] args)
 		{
+		ArrayList<Player> dataOfPlayers = DataOfPlayers.addPlayers();
+		PlayGame.makeTeam(dataOfPlayers);
 	
-		DataOfPlayers.addPlayers();
-		ArrayList<Player> dataOfPlayers = makeTeam.
-		PlayGame.greetPlayer();
-		PlayGame.shootShots();
 		}
 
 	}

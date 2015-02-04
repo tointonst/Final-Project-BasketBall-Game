@@ -57,7 +57,7 @@ public class PlayGame
 	  
 	    for(int i =0; i<myTeam.size(); i++)
 			{
-			System.out.println(myTeam.get(i).getNameOfPlayer() + myTeam.get(i).getFreeThrowPercentage() );
+			System.out.println(myTeam.get(i).toString());
 			}
 		}
 	

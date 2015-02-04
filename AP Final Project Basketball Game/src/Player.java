@@ -25,6 +25,7 @@ public class Player
 		{
 		return position;
 		}
+	
 	public String getNameOfPlayer()
 		{
 		return nameOfPlayer;

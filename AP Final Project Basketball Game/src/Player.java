@@ -10,6 +10,7 @@ public class Player
 	protected double layupPercentage;
   
 	protected static ArrayList<Player> dataOfPlayers = new ArrayList<Player>();
+	protected static ArrayList<Player> myTeam = new ArrayList<Player>();
 
 	public Player(String p, String nop, double ftp, double tpp, double mrp, double lp
 			)

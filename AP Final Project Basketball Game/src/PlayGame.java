@@ -27,9 +27,11 @@ public class PlayGame
 		{
 		name = JOptionPane.showInputDialog("What is your name?"); 
 		JOptionPane.showMessageDialog(frame, "Nice to meet you " + name + "!" + 
-				"\n" + name + ", we are going to play 3 on 3 Basketball.");
+				"\n" + name + ", we are going to play 3 on 3 Basketball."
+				+ "\nThere are 6 players to Choose from, pick 3 to be on your team");
 		}
-	public static void makeTeam(ArrayList<Player> dataOfPlayers)
+	
+	public static ArrayList<Player> makeTeam(ArrayList<Player> dataOfPlayers)
 		{
 	    int teamCounter=0;
 	    int peopleCounter = dataOfPlayers.size()-1;
@@ -41,8 +43,8 @@ public class PlayGame
 				{
 				options[i] = dataOfPlayers.get(i).getNameOfPlayer();
 				}
-			userPlayer = JOptionPane.showOptionDialog(frame, "Which player would you like to play with?",
-					"Your Player",
+			userPlayer = JOptionPane.showOptionDialog(frame, "Which player would you like to have on your team?",
+					"Your Team",
 					JOptionPane.YES_NO_CANCEL_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
 					null, options, options[peopleCounter]);
@@ -50,50 +52,29 @@ public class PlayGame
 			myTeam.add(dataOfPlayers.get(userPlayer));
 			dataOfPlayers.remove(userPlayer);
 			teamCounter++;
-			
-			
-			
 	    	}  while(teamCounter<3);
 	  
 	    for(int i =0; i<myTeam.size(); i++)
 			{
 			System.out.println(myTeam.get(i).toString());
 			}
+	    return myTeam;
+		}
+	public static void printMyTeam(ArrayList<Player> myTeam)
+		{
+		for(int i =0; i<myTeam.size(); i++)
+			{
+			JOptionPane.showMessageDialog(frame, myTeam.get(i).toString());
+			}
+		
+			    
+			   
+		}
+	public static void playGame(ArrayList<Player> dataOfPlayers, ArrayList<Player> myTeam)
+		{
+		
 		}
 	
-	public static void test()
-		{
-		final JFrame frame = new JFrame("Select Your Animals");
-		frame.setSize(400, 200);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null); //Sets JPanel to center of screen 
-		
-		String[] iii = new String[] {"Ant", "Elephant", "Lion", "Hippopatamus"}; 
-		JButton button = new JButton("Enter");
-		final JComboBox<String> dropdown = new JComboBox<String>(iii);
-		final TextField txtfield = new TextField(20);
-		final JLabel words = new JLabel("ANIMALS:");
-		
-		final JPanel panel = new JPanel();
-		panel.setBackground(Color.LIGHT_GRAY);
-		frame.add(panel);
-		panel.add(words);
-		panel.add(dropdown);
-		panel.add(txtfield);
-		panel.add(button);
-		button.addActionListener(new ActionListener()
-			{
-			public void actionPerformed(ActionEvent arg0) 
-				{
-				System.out.println(dropdown.getSelectedItem());
-				System.out.println(dropdown.getSelectedIndex());
-				System.out.println(txtfield.getText());
-				}
-			});
-		
-		frame.setVisible(true);
-		}
 
 	public static void shootShots()
 		{

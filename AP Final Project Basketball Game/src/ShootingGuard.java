@@ -5,7 +5,7 @@ public class ShootingGuard extends Guard{
 			double lp, boolean hq)
 		{
 		super(p, nop, ftp, tpp, mrp, lp, hq);
-		// TODO Auto-generated constructor stub
+		myPlayerTemperature = (PlayerTemperature) new StreakyHot();
 		}
 
 	

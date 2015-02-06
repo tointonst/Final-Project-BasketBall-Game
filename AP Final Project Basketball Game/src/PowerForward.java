@@ -5,7 +5,7 @@ public class PowerForward extends BigMan{
 			double lp, boolean hh)
 		{
 		super(p, nop, ftp, tpp, mrp, lp, hh);
-		// TODO Auto-generated constructor stub
+		myPlayerTemperature = (PlayerTemperature) new StreakyCold();
 		}
 
 	@Override

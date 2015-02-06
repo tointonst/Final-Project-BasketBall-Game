@@ -17,9 +17,9 @@ public class DataOfPlayers extends Player
 		dataOfPlayers.add(new PointGuard("PG" , "Steph Curry", 90.4, 42.8, 75.4, 35.2, true));
 		dataOfPlayers.add(new SmallForward("SF", "Kevin Durant", 52.7, 4.5, 55, 99.999, true));
 		dataOfPlayers.add(new Center("C", "Dewight Howard", 52.7, 4.5, 55, 99.999, true, 10.6));
-		dataOfPlayers.add(new SmallForward("C", "Lebron James", 52.7, 4.5, 55, 99.999, true));
-		dataOfPlayers.add(new Center("C", "MJ" , 52.7, 4.5, 55, 99.999, true, 10.6));
-		dataOfPlayers.add(new Center("C", "Steph Curry", 52.7, 4.5, 55, 99.999, true, 10.6));
+		dataOfPlayers.add(new ShootingGuard("SG", "James Harden", 52.7, 4.5, 55, 99.999, true));
+		dataOfPlayers.add(new PowerForward("PF", "LaMarcus Aldridge" , 52.7, 4.5, 55, 99.999, true));
+		dataOfPlayers.add(new ShootingGuard("SG", "Kobe Bryant", 52.7, 4.5, 55, 99.999, true));
 		return dataOfPlayers;
 		}
 	}

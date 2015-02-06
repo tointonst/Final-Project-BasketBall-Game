@@ -8,6 +8,7 @@ public class Player
 	protected double threePointPercentage;
 	protected double midRangePercentage;
 	protected double layupPercentage;
+	protected PlayerTemperature myPlayerTemperature;
   
 	protected static ArrayList<Player> dataOfPlayers = new ArrayList<Player>();
 	protected static ArrayList<Player> myTeam = new ArrayList<Player>();

@@ -44,7 +44,7 @@ public class PlayGame
 				options[i] = dataOfPlayers.get(i).getNameOfPlayer();
 				}
 			userPlayer = JOptionPane.showOptionDialog(frame, "Which player would you like to have on your team?",
-					"Your Team",
+					"Players",
 					JOptionPane.YES_NO_CANCEL_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
 					null, options, options[peopleCounter]);
@@ -70,9 +70,11 @@ public class PlayGame
 			    
 			   
 		}
-	public static void playGame(ArrayList<Player> dataOfPlayers, ArrayList<Player> myTeam)
+	public static void playGame(ArrayList<Player> dataOfPlayers, ArrayList<Player> myTeam) throws InterruptedException
 		{
-		
+		System.out.println("we are going to tip off");
+		Thread.sleep(2000);
+		System.out.println("you won the tip ");
 		}
 	
 

@@ -74,8 +74,37 @@ public class PlayGame
 		{
 		System.out.println("we are going to tip off");
 		Thread.sleep(2000);
-		System.out.println("you won the tip ");
-		}
+
+		if (myTeam.get(0).getPosition().equals("C"))
+			{
+			System.out.println("you won the tip ");
+			}
+		else
+			{
+			System.out.println("you lost the tip");
+			}
+		
+		
+		int pointguardCounter=0;
+		int myPGindex =0;
+		for(int i =0; i<myTeam.size(); i++)
+			{
+			if (myTeam.get(i).getPosition().equals("PG"))
+				{
+				pointguardCounter++;
+				myPGindex= i;
+				}
+			}
+		if (pointguardCounter>0)
+			{
+			System.out.println(myTeam.get(myPGindex).getNameOfPlayer() + " dribbles down the court and passes it to " );
+			}
+		else ()
+			
+	}
+		
+		
+		
 	
 
 	public static void shootShots()

@@ -1,5 +1,7 @@
 
 import java.awt.*;
+import java.util.Collections;
+import java.util.Comparator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -53,53 +55,58 @@ public class PlayGame
 			dataOfPlayers.remove(userPlayer);
 			teamCounter++;
 	    	}  while(teamCounter<3);
-	  
-	    for(int i =0; i<myTeam.size(); i++)
-			{
-			System.out.println(myTeam.get(i).toString());
-			}
-	    return myTeam;
+	  return myTeam;
+	    
 		}
-	public static void printMyTeam(ArrayList<Player> myTeam)
+	public static ArrayList<Player> printMyTeam(ArrayList<Player> myTeam)
 		{
-		for(int i =0; i<myTeam.size(); i++)
-			{
-			JOptionPane.showMessageDialog(frame, myTeam.get(i).toString());
-			}
+	
 		
-			    
-			   
+		
+		Collections.sort(myTeam,new Comparator<Player>() {
+	         public int compare(Player s1, Player s2) {
+	                return s1.getPosition().compareToIgnoreCase(s2.getPosition());
+	        }
+	         
+	    });
+		
+		
+		for(int i =0; i<myTeam.size(); i++)
+		{
+		System.out.println(myTeam.get(i).toString());
+		}
+        return myTeam;
 		}
 	public static void playGame(ArrayList<Player> dataOfPlayers, ArrayList<Player> myTeam) throws InterruptedException
 		{
-		System.out.println("we are going to tip off");
+		Collections.sort(dataOfPlayers,new Comparator<Player>() {
+	         public int compare(Player s1, Player s2) {
+	                return s1.getPosition().compareToIgnoreCase(s2.getPosition());
+	        }
+	         
+	    });
+		System.out.println("We are going to tip off");
 		Thread.sleep(2000);
 
-		if (myTeam.get(0).getPosition().equals("C"))
+		if (myTeam.get(2).getPosition().equals("5"))
 			{
-			System.out.println("you won the tip ");
+			System.out.println("You won the tip ");
+			System.out.println("The ball was tiped to " + myTeam.get(0).getNameOfPlayer() + ". He dribbles down court then passes it to " + myTeam.get(1).getNameOfPlayer());
+			    if(myTeam.get(1).getPosition().equals("2"))
+			    	{
+			    	double userShotRandomNumber = (Math.random() * 100);
+			    	if ()
+			    	}
 			}
 		else
 			{
-			System.out.println("you lost the tip");
+			System.out.println("You lost the tip");
 			}
 		
 		
-		int pointguardCounter=0;
-		int myPGindex =0;
-		for(int i =0; i<myTeam.size(); i++)
-			{
-			if (myTeam.get(i).getPosition().equals("PG"))
-				{
-				pointguardCounter++;
-				myPGindex= i;
-				}
-			}
-		if (pointguardCounter>0)
-			{
-			System.out.println(myTeam.get(myPGindex).getNameOfPlayer() + " dribbles down the court and passes it to " );
-			}
-		else ()
+		
+		
+		
 			
 	}
 		

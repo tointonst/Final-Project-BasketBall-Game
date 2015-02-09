@@ -5,12 +5,12 @@ public class PointGuard extends Guard{
 			double lp, boolean hq)
 		{
 		super(p, nop, ftp, tpp, mrp, lp, hq);
-		// TODO Auto-generated constructor stub
+		myPlayerTemperature = (PlayerTemperature) new noStreak();
 		}
 	
 	@Override
 	public String toString()
 		{
-		return getPosition() + " " + getNameOfPlayer() + " " + getFreeThrowPercentage() + " " + getThreePointPercentage() + " " + getMidRangePercentage() + " " + getLayupPercentage() + " " + getHasQuickness();
+		return getNameOfPlayer() + "   " + getThreePointPercentage() + "   " + getMidRangePercentage() + "   " + getLayupPercentage() ;
 		}
 }

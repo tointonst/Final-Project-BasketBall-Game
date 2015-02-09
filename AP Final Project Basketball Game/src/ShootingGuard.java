@@ -12,7 +12,7 @@ public class ShootingGuard extends Guard{
 	@Override
 	public String toString()
 		{
-		return getPosition() + " " + getNameOfPlayer() + " " + getFreeThrowPercentage() + " " + getThreePointPercentage() + " " + getMidRangePercentage() + " " + getLayupPercentage() + " " + getHasQuickness();
+		return getNameOfPlayer()  + "   " + getThreePointPercentage() + "   " + getMidRangePercentage() + "   " + getLayupPercentage();
 		}
 
 }

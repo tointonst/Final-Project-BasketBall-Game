@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.util.Collections;
 import java.util.Comparator;
@@ -27,101 +26,126 @@ public class PlayGame
 
 	public static void greetPlayer()
 		{
-		name = JOptionPane.showInputDialog("What is your name?"); 
-		JOptionPane.showMessageDialog(frame, "Nice to meet you " + name + "!" + 
-				"\n" + name + ", we are going to play 3 on 3 Basketball."
-				+ "\nThere are 6 players to Choose from, pick 3 to be on your team");
+		name = JOptionPane.showInputDialog("What is your name?");
+		JOptionPane
+				.showMessageDialog(
+						frame,
+						"Nice to meet you "
+								+ name
+								+ "!"
+								+ "\n"
+								+ name
+								+ ", we are going to play 3 on 3 Basketball."
+								+ "\nThere are 6 players to Choose from, pick 3 to be on your team.");
 		}
-	
+
 	public static ArrayList<Player> makeTeam(ArrayList<Player> dataOfPlayers)
 		{
-	    int teamCounter=0;
-	    int peopleCounter = dataOfPlayers.size()-1;
-	    ArrayList<Player> myTeam = new ArrayList<Player>();
-	    do
-	    	{
-	    	Object[] options =  new Object[dataOfPlayers.size()];
-			for(int i =0; i< dataOfPlayers.size(); i++)
+		int teamCounter = 0;
+		int peopleCounter = dataOfPlayers.size() - 1;
+		ArrayList<Player> myTeam = new ArrayList<Player>();
+		do
+			{
+			Object[] options = new Object[dataOfPlayers.size()];
+			for (int i = 0; i < dataOfPlayers.size(); i++)
 				{
 				options[i] = dataOfPlayers.get(i).getNameOfPlayer();
 				}
-			userPlayer = JOptionPane.showOptionDialog(frame, "Which player would you like to have on your team?",
-					"Players",
-					JOptionPane.YES_NO_CANCEL_OPTION,
-					JOptionPane.QUESTION_MESSAGE,
-					null, options, options[peopleCounter]);
+			userPlayer = JOptionPane.showOptionDialog(frame,
+					"Which player would you like to have on your team?",
+					"Players", JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, options,
+					options[peopleCounter]);
 			peopleCounter--;
 			myTeam.add(dataOfPlayers.get(userPlayer));
 			dataOfPlayers.remove(userPlayer);
 			teamCounter++;
-	    	}  while(teamCounter<3);
-	  return myTeam;
-	    
+			} while (teamCounter < 3);
+		return myTeam;
+
 		}
+
 	public static ArrayList<Player> printMyTeam(ArrayList<Player> myTeam)
 		{
-	
+
+		Collections.sort(myTeam, new Comparator<Player>()
+			{
+				public int compare(Player s1, Player s2)
+					{
+					return s1.getPosition().compareToIgnoreCase(
+							s2.getPosition());
+					}
+
+			});
+
+		JOptionPane.showMessageDialog(frame,
+				"This is your team by player and each of their stats.");
+		for (int i = 0; i < myTeam.size(); i++)
+			{
+			JOptionPane.showMessageDialog(frame, "Name                 "
+					+ "3Point%  2point%  finish%" + "\n"
+					+ myTeam.get(i).toString());
+			myTeam.get(i).myPlayerTemperature.streak();
+
+			}
 		
-		
-		Collections.sort(myTeam,new Comparator<Player>() {
-	         public int compare(Player s1, Player s2) {
-	                return s1.getPosition().compareToIgnoreCase(s2.getPosition());
-	        }
-	         
-	    });
-		
-		
-		for(int i =0; i<myTeam.size(); i++)
-		{
-		System.out.println(myTeam.get(i).toString());
+		return myTeam;
 		}
-        return myTeam;
-		}
+
 	public static void playGame(ArrayList<Player> dataOfPlayers, ArrayList<Player> myTeam) throws InterruptedException
 		{
-		Collections.sort(dataOfPlayers,new Comparator<Player>() {
-	         public int compare(Player s1, Player s2) {
-	                return s1.getPosition().compareToIgnoreCase(s2.getPosition());
-	        }
-	         
-	    });
-		System.out.println("We are going to tip off");
+		Collections.sort(dataOfPlayers, new Comparator<Player>()
+			{
+				public int compare(Player s1, Player s2)
+					{
+					return s1.getPosition().compareToIgnoreCase(
+							s2.getPosition());
+					}
+
+			});
+		int myTeamPoints = 0;
+		int computerTeamPoints = 0;
+		JOptionPane.showMessageDialog(frame, "The game is to 11 by 2s and 3s." + "\nIts your ball to start.");
+		JOptionPane.showMessageDialog(frame, myTeam.get(0).getNameOfPlayer() + " has the ball at the top of the key.");
 		Thread.sleep(2000);
-
-		if (myTeam.get(2).getPosition().equals("5"))
+		do
 			{
-			System.out.println("You won the tip ");
-			System.out.println("The ball was tiped to " + myTeam.get(0).getNameOfPlayer() + ". He dribbles down court then passes it to " + myTeam.get(1).getNameOfPlayer());
-			    if(myTeam.get(1).getPosition().equals("2"))
-			    	{
-			    	double userShotRandomNumber = (Math.random() * 100);
-			    	if ()
-			    	}
-			}
-		else
+			int playerDecision = (int)(Math.random()*3)+1;
+			switch (userShotChoice)
 			{
-			System.out.println("You lost the tip");
-			}
-		
-		
-		
-		
-		
 			
-	}
+			case 1:
+				{
+				double userShotRandomNumber = (Math.random() * 100);
+				if(myTeam.get(0).getThreePointPercentage()> userShotRandomNumber)
+					{
+					JOptionPane.showMessageDialog(frame, myTeam.get(0).getNameOfPlayer() + " shoots a three at the top of the key and makes it.");
+					myTeamPoints = myTeamPoints +3;
+					}
+				break;
+				}
+			case 2:
+				{
+				
+				break;
+				}
+			case 3:
+				{
+				break;
+				}
+			 } 
+			}while (myTeamPoints<11 || computerTeamPoints<11 );
 		
-		
-		
+		}
 	
-
 	public static void shootShots()
 		{
-		Object[] options = {DataOfPlayers.dataOfPlayers.get(0).getNameOfPlayer(), DataOfPlayers.dataOfPlayers.get(1).getNameOfPlayer(), DataOfPlayers.dataOfPlayers.get(2).getNameOfPlayer()};
+		Object[] options = {DataOfPlayers.dataOfPlayers.get(0).getNameOfPlayer(), DataOfPlayers.dataOfPlayers.get(1).getNameOfPlayer()};
 		userPlayer = JOptionPane.showOptionDialog(frame, "Which player would you like to play with?",
 				"Your Player",
 				JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE,
-				null, options, options[2]);
+				null, options, options[1]);
 
 		if (userPlayer == 0)
 			{
@@ -344,4 +368,6 @@ public class PlayGame
 
 			} while (keepPlaying == true);
 		}
+	}
+
 	}

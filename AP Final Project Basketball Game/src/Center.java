@@ -8,6 +8,7 @@ public class Center extends BigMan {
 		{
 		super(p, nop, ftp, tpp, mrp, lp, hh);
 		blockShotPersentage = bsp;
+		myPlayerTemperature = (PlayerTemperature) new noStreak();
 		}
 	public double getBlockShotPercentage()
 		{
@@ -17,7 +18,7 @@ public class Center extends BigMan {
 	@Override
 	public String toString()
 		{
-		return getPosition() + " " + getNameOfPlayer() + " " + getFreeThrowPercentage() + " " + getThreePointPercentage() + " " + getMidRangePercentage() + " " + getLayupPercentage() + " " + getHasHeight() + " " + getBlockShotPercentage();
+		return  getNameOfPlayer() + "   " + getThreePointPercentage() + "   " + getMidRangePercentage() + "   " + getLayupPercentage() ;
 		}
 
 

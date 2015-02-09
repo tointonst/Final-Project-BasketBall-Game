@@ -5,13 +5,13 @@ public class SmallForward extends BigMan{
 			double lp, boolean hh)
 		{
 		super(p, nop, ftp, tpp, mrp, lp, hh);
-		// TODO Auto-generated constructor stub
+		myPlayerTemperature = (PlayerTemperature) new noStreak();
 		}
 	
 	@Override
 	public String toString()
 		{
-		return getPosition() + " " + getNameOfPlayer() + " " + getFreeThrowPercentage() + " " + getThreePointPercentage() + " " + getMidRangePercentage() + " " + getLayupPercentage() + getHasHeight();
+		return getNameOfPlayer() + "   " + getThreePointPercentage() + "   " + getMidRangePercentage() + "   " + getLayupPercentage();
 		}
 
 	

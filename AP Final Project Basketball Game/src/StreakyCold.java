@@ -11,7 +11,7 @@ public class StreakyCold implements PlayerTemperature
 			null;
 		JOptionPane
 		.showMessageDialog(
-				frame, "If this player misses a few shots they wont make any in a while.");
+				frame, "If this player misses a few shots he won't make any in a while.");
 		}
 
 	}

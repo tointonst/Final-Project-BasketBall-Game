@@ -11,6 +11,6 @@ public class StreakyHot implements PlayerTemperature
 			null;
 		JOptionPane
 		.showMessageDialog(
-				frame, "Once this player get on a roll he dosent miss.");
+				frame, "Once this player gets on a roll he dosen't miss.");
 		}
 	}

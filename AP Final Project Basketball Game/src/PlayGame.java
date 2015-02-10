@@ -91,6 +91,205 @@ public class PlayGame
 		
 		return myTeam;
 		}
+	
+	public static int myShootBall(ArrayList<Player> myTeam, int area, int player)
+	{
+	double userShotRandomNumber = (Math.random() * 100);
+	int points =0;
+	switch (area)
+	{
+	case 1:
+		{
+		userShotPercentage = myTeam.get(player).getLayupPercentage();
+		break;
+		}
+	case 2:
+		{
+		userShotPercentage = myTeam.get(player).getMidRangePercentage();
+		break;
+		}
+	case 3:
+		{
+		userShotPercentage = myTeam.get(player).getThreePointPercentage();
+		break;
+		}
+	
+	}
+		if(userShotPercentage> userShotRandomNumber)
+			{
+			JOptionPane.showMessageDialog(frame, myTeam.get(player).getNameOfPlayer() + " shoots and makes it.");
+			switch(area)
+				{
+				case 1:
+					{
+				    points =2;
+				break;
+					}
+				case 2:
+					{
+					points = 2;
+				break;
+					}
+				case 3:
+					{
+					points = 2;
+					break;
+					}
+				}
+			}
+		else 
+			{
+			JOptionPane.showMessageDialog(frame, myTeam.get(player).getNameOfPlayer() + " shoots and misses it."); 
+			points =0;
+			}
+	return points;
+	}
+	
+	public static int myPassBall(ArrayList<Player> myTeam, int player)
+	{
+		int nextPlayer=0;
+		int playerDecision = (int)(Math.random()*2)+1;
+		switch (player)
+		{
+		case 0:
+			{
+			
+			JOptionPane.showMessageDialog(frame, myTeam.get(player).getNameOfPlayer() + " passes the ball to " + myTeam.get(playerDecision) + ".");
+			nextPlayer = playerDecision;
+			break;
+			}
+		case 1:
+			{
+			if(playerDecision==1)
+				{
+				JOptionPane.showMessageDialog(frame, myTeam.get(player).getNameOfPlayer() + " passes the ball to " + myTeam.get(0) + ".");
+				nextPlayer=0;
+				}
+			else
+			{
+				JOptionPane.showMessageDialog(frame, myTeam.get(player).getNameOfPlayer() + " passes the ball to " + myTeam.get(playerDecision) + ".");
+				nextPlayer = 2;
+			}
+			
+			break;
+			}
+		case 2:
+			{
+				if(playerDecision==2)
+				{
+				JOptionPane.showMessageDialog(frame, myTeam.get(player).getNameOfPlayer() + " passes the ball to " + myTeam.get(0) + ".");
+				nextPlayer = 0;
+				}
+			else
+			{
+				JOptionPane.showMessageDialog(frame, myTeam.get(player).getNameOfPlayer() + " passes the ball to " + myTeam.get(playerDecision) + ".");
+				nextPlayer = 1;
+			}
+			break;
+			}
+		
+		}
+	return nextPlayer;
+	}
+	
+	public static int computerShootBall(ArrayList<Player> dataOfPlayers, int area, int player)
+	{
+	double userShotRandomNumber = (Math.random() * 100);
+	int points =0;
+	switch (area)
+	{
+	case 1:
+		{
+		userShotPercentage = dataOfPlayers.get(player).getLayupPercentage();
+		break;
+		}
+	case 2:
+		{
+		userShotPercentage = dataOfPlayers.get(player).getMidRangePercentage();
+		break;
+		}
+	case 3:
+		{
+		userShotPercentage = dataOfPlayers.get(player).getThreePointPercentage();
+		break;
+		}
+	
+	}
+		if(userShotPercentage> userShotRandomNumber)
+			{
+			JOptionPane.showMessageDialog(frame, dataOfPlayers.get(player).getNameOfPlayer() + " shoots and makes it.");
+			switch(area)
+			{
+			case 1:
+				{
+			    points =2;
+			break;
+				}
+			case 2:
+				{
+				points = 2;
+			break;
+				}
+			case 3:
+				{
+				points = 2;
+				break;
+				}
+			}
+			}
+		else 
+			{
+			JOptionPane.showMessageDialog(frame, dataOfPlayers.get(player).getNameOfPlayer() + " shoots and misses it.");
+			points =0;
+			}
+	return points;
+	}
+	
+	public static int computerPassBall(ArrayList<Player> dataOfPlayers, int player)
+	{
+		int nextPlayer =0;
+		int playerDecision = (int)(Math.random()*2)+1;
+		switch (player)
+		{
+		case 0:
+			{
+			JOptionPane.showMessageDialog(frame, dataOfPlayers.get(player).getNameOfPlayer() + " passes the ball to " + dataOfPlayers.get(playerDecision) + ".");
+			nextPlayer = playerDecision;
+			break;
+			}
+		case 1:
+			{
+			if(playerDecision==1)
+				{
+				JOptionPane.showMessageDialog(frame, dataOfPlayers.get(player).getNameOfPlayer() + " passes the ball to " + dataOfPlayers.get(0) + ".");
+				nextPlayer = 0;
+				}
+			else
+			{
+				JOptionPane.showMessageDialog(frame, dataOfPlayers.get(player).getNameOfPlayer() + " passes the ball to " + dataOfPlayers.get(playerDecision) + ".");
+				nextPlayer =2;
+			}
+			
+			break;
+			}
+		case 2:
+			{
+				if(playerDecision==2)
+				{
+				JOptionPane.showMessageDialog(frame, dataOfPlayers.get(player).getNameOfPlayer() + " passes the ball to " + dataOfPlayers.get(0) + ".");
+				nextPlayer = 0;
+				}
+			else
+			{
+				JOptionPane.showMessageDialog(frame, dataOfPlayers.get(player).getNameOfPlayer() + " passes the ball to " + dataOfPlayers.get(playerDecision) + ".");
+				nextPlayer =1;
+			}
+			break;
+			}
+		
+		}
+	return nextPlayer;
+	}
 
 	public static void playGame(ArrayList<Player> dataOfPlayers, ArrayList<Player> myTeam) throws InterruptedException
 		{
@@ -106,34 +305,18 @@ public class PlayGame
 		int myTeamPoints = 0;
 		int computerTeamPoints = 0;
 		JOptionPane.showMessageDialog(frame, "The game is to 11 by 2s and 3s." + "\nIts your ball to start.");
-		JOptionPane.showMessageDialog(frame, myTeam.get(0).getNameOfPlayer() + " has the ball at the top of the key.");
-		Thread.sleep(2000);
+		
 		do
 			{
-			int playerDecision = (int)(Math.random()*3)+1;
-			switch (userShotChoice)
+			JOptionPane.showMessageDialog(frame, myTeam.get(0).getNameOfPlayer() + " has the ball at the top of the key.");
+			Thread.sleep(2000);
+			//make a random number 1 shoot 2 pass
+			// while no shot has taken keep passing 
+			// if make it start at the begining of the loop and add points to total
+			// if else miss then other team has ball and restart the loop for them 
 			{
 			
-			case 1:
-				{
-				double userShotRandomNumber = (Math.random() * 100);
-				if(myTeam.get(0).getThreePointPercentage()> userShotRandomNumber)
-					{
-					JOptionPane.showMessageDialog(frame, myTeam.get(0).getNameOfPlayer() + " shoots a three at the top of the key and makes it.");
-					myTeamPoints = myTeamPoints +3;
-					}
-				break;
-				}
-			case 2:
-				{
-				
-				break;
-				}
-			case 3:
-				{
-				break;
-				}
-			 } 
+			} 
 			}while (myTeamPoints<11 || computerTeamPoints<11 );
 		
 		}
@@ -169,39 +352,7 @@ public class PlayGame
 					JOptionPane.QUESTION_MESSAGE,
 					null, whichShot, whichShot[4]);
 
-			switch (userShotChoice)
-				{
-				case 0:
-					{
-					userShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							userPlayer ).getFreeThrowPercentage();
-					break;
-					}
-				case 1:
-					{
-					userShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							userPlayer ).getThreePointPercentage();
-					break;
-					}
-				case 2:
-					{
-					userShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							userPlayer ).getMidRangePercentage();
-					break;
-					}
-				case 3:
-					{
-					userShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							userPlayer ).getDunkPercentage();
-					break;
-					}
-				case 4:
-					{
-					userShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							userPlayer ).getBackwardsShotPercentage();
-					break;
-					}
-				}
+			
 			
 			if (userShotChoice==3)
 				{
@@ -370,4 +521,4 @@ public class PlayGame
 		}
 	}
 
-	}
+	

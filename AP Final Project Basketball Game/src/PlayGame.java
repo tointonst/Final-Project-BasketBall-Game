@@ -351,11 +351,15 @@ public class PlayGame
 		int computerPoints = 0;
 		boolean myTeamHasBall = true;
 		boolean computerTeamHasBall = true;
-		JOptionPane.showMessageDialog(frame, "The game is to 11 by 2s and 3s."
+		JOptionPane.showMessageDialog(frame, "The game is to 11 by 2s and 3s and make it take it all the way."
 				+ "\nIts your ball to start.");
 
 		
-		while (myTeamHasBall == true)
+		
+		
+		do
+			{
+			while (myTeamHasBall == true)
 			{
 			int nextPlayer = 0;
 			JOptionPane.showMessageDialog(frame, myTeam.get(0)
@@ -386,11 +390,13 @@ public class PlayGame
 							if (myPoints > 0)
 								{
 								myTeamHasBall = true;
-								JOptionPane.showMessageDialog(frame, "we should start at top again");
+								JOptionPane.showMessageDialog(frame, "Since you made it, it's your ball at the top of the key");
 								} 
 							else
 								{
 								myTeamHasBall = false;
+								computerTeamHasBall = true;
+								JOptionPane.showMessageDialog(frame, "The other team got the rebound and the ball is reset at the top of the key");
 								break;
 								}
 						 }
@@ -406,271 +412,97 @@ public class PlayGame
 				if (myPoints > 0)
 					{
 					myTeamHasBall = true;
-					JOptionPane.showMessageDialog(frame, "we should start at top again");
+					JOptionPane.showMessageDialog(frame, "Since you made it, it's your ball at the top of the key");
 					} 
 				else
 					{
 					myTeamHasBall = false;
+					computerTeamHasBall = true;
+					JOptionPane.showMessageDialog(frame, "The other team got the rebound and the ball is reset at the top of the key");
 					break;
 					}
 				}
 			}
-		JOptionPane.showMessageDialog(frame, "You are out of the first teams while loop");
-		
-		do
-			{
-			
-//				while (computerTeamHasBall == true)
-//					{
-//					JOptionPane.showMessageDialog(frame, myTeam.get(0)
-//							.getNameOfPlayer()
-//							+ " has the ball at the top of the key.");
-//					Thread.sleep(2000);
-//					int computerPlayerDecision = (int) (Math.random() * 2) + 1;
-//					if (computerPlayerDecision == 1)
-//						{
-//						nextPlayer = myPassBall(myTeam, nextPlayer);
-//						// int nextPlayerDecision =1;
-//						// while (nextPlayerDecision ==1)
-//						// {
-//						// nextPlayerDecision = (int)(Math.random()*2)+1;
-//						// if(nextPlayerDecision==1)
-//						// {
-//						// nextPlayer = myPassBall(myTeam, nextPlayer);
-//						// }
-//						// else
-//						// {
-//						// break;
-//						// }
-//						// }
-//						} 
-//					else
-//						{
-//						myPoints = myShootBall(myTeam, 3, nextPlayer);
-//						myTeamPoints = myTeamPoints + myPoints;
-//						JOptionPane.showMessageDialog(frame, "Your teams has "
-//								+ myTeamPoints + " points and the other team has "
-//								+ computerTeamPoints + " points.");
-//						if (myPoints > 0)
-//							{
-//							computerTeamHasBall = true;
-//							} 
-//						else
-//							{
-//							computerTeamHasBall = false;
-//							break;
-//							}
-//						}
-//		             }
-				 
-		}while (myTeamPoints < 11 || computerTeamPoints < 11);
-
-		}
-
-	public static void shootShots()
+		while (computerTeamHasBall == true)
 		{
-		Object[] options =
-			{ DataOfPlayers.dataOfPlayers.get(0).getNameOfPlayer(),
-					DataOfPlayers.dataOfPlayers.get(1).getNameOfPlayer() };
-		userPlayer = JOptionPane.showOptionDialog(frame,
-				"Which player would you like to play with?", "Your Player",
-				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-				null, options, options[1]);
-
-		if (userPlayer == 0)
+		int nextPlayer = 0;
+		JOptionPane.showMessageDialog(frame, dataOfPlayers.get(0)
+				.getNameOfPlayer()
+				+ " has the ball at the top of the key.");
+		Thread.sleep(2000);
+		int playerDecision = (int) (Math.random() * 2) + 1;
+		if (playerDecision == 1)
 			{
-			computerPlayer = 1;
-			} else
-			{
-			computerPlayer = 0;
+			nextPlayer = computerPassBall(dataOfPlayers, nextPlayer);
+			int nextPlayerDecision =1;
+			while (nextPlayerDecision ==1)
+				 {
+				 Thread.sleep(2000);
+				 nextPlayerDecision = (int)(Math.random()*2)+1;
+				 if(nextPlayerDecision==1)
+					 {
+					 
+					 nextPlayer = computerPassBall(dataOfPlayers, nextPlayer);
+					 }
+				 else
+					 {
+					 computerPoints = computerShootBall(dataOfPlayers, 2, nextPlayer);
+						computerTeamPoints = computerTeamPoints + computerPoints;
+						JOptionPane.showMessageDialog(frame, "Your teams has "
+								+ myTeamPoints + " points and the other team has "
+								+ computerTeamPoints + " points.");
+						if (computerPoints > 0)
+							{
+							computerTeamHasBall = true;
+							JOptionPane.showMessageDialog(frame, "Since they made it, they get the ball at the top of the key");
+							} 
+						else
+							{
+							computerTeamHasBall = false;
+							myTeamHasBall = true;
+							JOptionPane.showMessageDialog(frame, "Your team got the rebound and the ball is reset at the top of the key");
+							break;
+							}
+					 }
+				 } 
 			}
-
-		do
+		else
 			{
-			double userShotRandomNumber = (Math.random() * 100);
-			double computerShotRandomNumber = (Math.random() * 100);
-			Object[] whichShot =
-				{ "Free Throw", "Three Pointer", "Mid Range Shot", "Dunk",
-						"Backwards Shot" };
-			userShotChoice = JOptionPane
-					.showOptionDialog(frame,
-							"Which shot would you like to take?",
-							"Choose Shot", JOptionPane.YES_NO_CANCEL_OPTION,
-							JOptionPane.QUESTION_MESSAGE, null, whichShot,
-							whichShot[4]);
-
-			if (userShotChoice == 3)
+			computerPoints = computerShootBall(dataOfPlayers, 3, nextPlayer);
+			computerTeamPoints = computerTeamPoints + computerPoints;
+			JOptionPane.showMessageDialog(frame, "Your teams has "
+					+ myTeamPoints + " points and the other team has "
+					+ computerTeamPoints + " points.");
+			if (computerPoints > 0)
 				{
-				JOptionPane.showMessageDialog(frame,
-						"Are you ready to try to Dunk?");
-				} else
+				computerTeamHasBall = true;
+				JOptionPane.showMessageDialog(frame, "Since they made it, they get the ball at the top of the key");
+				} 
+			else
 				{
-				JOptionPane.showMessageDialog(frame,
-						"Are you ready to shoot the "
-								+ whichShot[userShotChoice] + "?");
+				computerTeamHasBall = false;
+				myTeamHasBall = true;
+				JOptionPane.showMessageDialog(frame, "Your team got the rebound and the ball is reset at the top of the key");
+				break;
 				}
+			}
+		}
+		if(myTeamPoints>5)
+		{
+			JOptionPane.showMessageDialog(frame, "congradulations you won");	
+		}
+		else if (computerTeamPoints>5)
+		{
+			JOptionPane.showMessageDialog(frame, "sorry you lost");
+		}
+		else
+		{
+			
+		}
+		
+		}while (myTeamPoints < 5 || computerTeamPoints < 5);
 
-			if (userShotPercentage >= userShotRandomNumber)
-				{
-				JOptionPane.showMessageDialog(frame, "Nice you made the "
-						+ whichShot[userShotChoice] + ".");
-				userShotOutcome = "make";
-				} else
-				{
-				JOptionPane.showMessageDialog(frame, "Sorry you missed the "
-						+ whichShot[userShotChoice] + ".");
-				userShotOutcome = "miss";
-				}
-
-			computerShotChoice = userShotChoice;
-			switch (computerShotChoice)
-				{
-				case 0:
-					{
-					computerShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							computerPlayer).getFreeThrowPercentage();
-					break;
-					}
-				case 1:
-					{
-					computerShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							computerPlayer).getThreePointPercentage();
-					break;
-					}
-				case 2:
-					{
-					computerShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							computerPlayer).getMidRangePercentage();
-					break;
-					}
-				case 3:
-					{
-					computerShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							computerPlayer).getDunkPercentage();
-					break;
-					}
-				case 4:
-					{
-					computerShotPercentage = DataOfPlayers.dataOfPlayers.get(
-							computerPlayer).getBackwardsShotPercentage();
-					break;
-					}
-				}
-
-			if (computerShotChoice == 3)
-				{
-				JOptionPane.showMessageDialog(frame,
-						"Your opponent is ready to try to Dunk?");
-				} else
-				{
-				JOptionPane.showMessageDialog(frame,
-						"Your opponent is about to shoot the "
-								+ whichShot[userShotChoice] + "?");
-				}
-
-			if (computerShotPercentage >= computerShotRandomNumber)
-				{
-				JOptionPane.showMessageDialog(frame, "Your opponent made the "
-						+ whichShot[userShotChoice] + ".");
-				computerShotOutCome = "make";
-				} else
-				{
-				JOptionPane.showMessageDialog(frame,
-						"Your opponent missed the " + whichShot[userShotChoice]
-								+ ".");
-				computerShotOutCome = "miss";
-				}
-
-			if (userShotOutcome.equals("make")
-					&& computerShotOutCome.equals("make"))
-				{
-				JOptionPane
-						.showMessageDialog(frame, "Since you both made the "
-								+ whichShot[userShotChoice]
-								+ ", no one gets a Letter.");
-				} else if (userShotOutcome.equals("make")
-					&& computerShotOutCome.equals("miss"))
-				{
-				JOptionPane.showMessageDialog(frame, "Since you made the "
-						+ whichShot[userShotChoice]
-						+ " and he missed. He gets a Letter.");
-				computerTotalMisses++;
-				} else if (userShotOutcome.equals("miss")
-					&& computerShotOutCome.equals("make"))
-				{
-				JOptionPane.showMessageDialog(frame, "Since you missed the "
-						+ whichShot[userShotChoice] + " and he made the "
-						+ whichShot[userShotChoice] + ". You get a Letter.");
-				userTotalMisses++;
-				} else
-				{
-				JOptionPane.showMessageDialog(frame, "Both of you missed the "
-						+ whichShot[userShotChoice]
-						+ ". So neither gets a letter.");
-				}
-
-			// JOptionPane.showMessageDialog(frame, "userPercent" +
-			// userShotPercentage
-			// + "\n" + "userrandom" + userShotRandomNumber
-			// + "\n" + "compPercent" + computerShotPercentage
-			// + "\n" + "comprandom " + computerShotRandomNumber
-			// + "\n" + "compPlayer#" + computerPlayer
-			// + "\n" + "compShot#" + computerShotChoice
-			// + "\n" + "userPlayer#" + userPlayer
-			// + "\n" + "userShot#" + userShotChoice);
-
-			switch (userTotalMisses)
-				{
-				case 1:
-					{
-					JOptionPane.showMessageDialog(frame,
-							"Your total letters are: P ");
-					break;
-					}
-				case 2:
-					{
-					JOptionPane.showMessageDialog(frame,
-							"Your total letters are: PI");
-					break;
-					}
-				case 3:
-					{
-					JOptionPane
-							.showMessageDialog(
-									frame,
-									"Dang man. Sorry but that was your last letter. You have PIG and lost the game.");
-					keepPlaying = false;
-					System.exit(0);
-					break;
-					}
-				}
-
-			switch (computerTotalMisses)
-				{
-				case 1:
-					{
-					JOptionPane.showMessageDialog(frame,
-							"Opponents total letters are : P");
-					break;
-					}
-				case 2:
-					{
-					JOptionPane.showMessageDialog(frame,
-							"Opponents total letters are : PI");
-					break;
-					}
-				case 3:
-					{
-					JOptionPane
-							.showMessageDialog(
-									frame,
-									"Congratulations man. That was his last Letter and he has recived PIG. You have won the GAME!.");
-					keepPlaying = false;
-					System.exit(0);
-					break;
-					}
-				}
-
-			} while (keepPlaying == true);
 		}
 	}
+
+	

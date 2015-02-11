@@ -118,27 +118,32 @@ public class PlayGame
 			}
 		if (userShotPercentage > userShotRandomNumber)
 			{
-			JOptionPane.showMessageDialog(frame, myTeam.get(player)
-					.getNameOfPlayer() + " shoots and makes it.");
 			switch (area)
+			{
+			case 1:
 				{
-				case 1:
-					{
-					points = 2;
-					break;
-					}
-				case 2:
-					{
-					points = 2;
-					break;
-					}
-				case 3:
-					{
-					points = 2;
-					break;
-					}
+				points = 2;
+				JOptionPane.showMessageDialog(frame, myTeam.get(player)
+						.getNameOfPlayer() + " shoots a layup and makes it.");
+				break;
 				}
-			} else
+			case 2:
+				{
+				JOptionPane.showMessageDialog(frame, myTeam.get(player)
+						.getNameOfPlayer() + " shoots and makes it.");
+				points = 2;
+				break;
+				}
+			case 3:
+				{
+				JOptionPane.showMessageDialog(frame, myTeam.get(player)
+						.getNameOfPlayer() + " shoots a three and makes it.");
+				points = 3;
+				break;
+				}
+			}
+			} 
+		else
 			{
 			JOptionPane.showMessageDialog(frame, myTeam.get(player)
 					.getNameOfPlayer() + " shoots and misses it.");
@@ -238,23 +243,28 @@ public class PlayGame
 			}
 		if (userShotPercentage > userShotRandomNumber)
 			{
-			JOptionPane.showMessageDialog(frame, dataOfPlayers.get(player)
-					.getNameOfPlayer() + " shoots and makes it.");
+			
 			switch (area)
 				{
 				case 1:
 					{
 					points = 2;
+					JOptionPane.showMessageDialog(frame, dataOfPlayers.get(player)
+							.getNameOfPlayer() + " shoots a layup and makes it.");
 					break;
 					}
 				case 2:
 					{
+					JOptionPane.showMessageDialog(frame, dataOfPlayers.get(player)
+							.getNameOfPlayer() + " shoots and makes it.");
 					points = 2;
 					break;
 					}
 				case 3:
 					{
-					points = 2;
+					JOptionPane.showMessageDialog(frame, dataOfPlayers.get(player)
+							.getNameOfPlayer() + " shoots a three and makes it.");
+					points = 3;
 					break;
 					}
 				}
@@ -344,165 +354,217 @@ public class PlayGame
 					}
 
 			});
-		
+
 		int myTeamPoints = 0;
 		int myPoints = 0;
 		int computerTeamPoints = 0;
 		int computerPoints = 0;
 		boolean myTeamHasBall = true;
 		boolean computerTeamHasBall = true;
-		JOptionPane.showMessageDialog(frame, "The game is to 11 by 2s and 3s and make it take it all the way."
-				+ "\nIts your ball to start.");
+		boolean gameContinues = true;
+		JOptionPane.showMessageDialog(frame,
+				"The game is to 11 by 2s and 3s and make it take it all the way."
+						+ "\nIts your ball to start.");
 
-		
-		
-		
 		do
 			{
 			while (myTeamHasBall == true)
-			{
-			int nextPlayer = 0;
-			JOptionPane.showMessageDialog(frame, myTeam.get(0)
-					.getNameOfPlayer()
-					+ " has the ball at the top of the key.");
-			Thread.sleep(2000);
-			int playerDecision = (int) (Math.random() * 2) + 1;
-			if (playerDecision == 1)
 				{
-				nextPlayer = myPassBall(myTeam, nextPlayer);
-				int nextPlayerDecision =1;
-				while (nextPlayerDecision ==1)
-					 {
-					 Thread.sleep(2000);
-					 nextPlayerDecision = (int)(Math.random()*2)+1;
-					 if(nextPlayerDecision==1)
-						 {
-						 
-						 nextPlayer = myPassBall(myTeam, nextPlayer);
-						 }
-					 else
-						 {
-						 myPoints = myShootBall(myTeam, 2, nextPlayer);
+				int nextPlayer = 0;
+				JOptionPane.showMessageDialog(frame, myTeam.get(0)
+						.getNameOfPlayer()
+						+ " has the ball at the top of the key.");
+				Thread.sleep(2000);
+				int playerDecision = (int) (Math.random() * 2) + 1;
+				if (playerDecision == 1)
+					{
+					nextPlayer = myPassBall(myTeam, nextPlayer);
+					int nextPlayerDecision = 1;
+					while (nextPlayerDecision == 1)
+						{
+						Thread.sleep(2000);
+						nextPlayerDecision = (int) (Math.random() * 2) + 1;
+						if (nextPlayerDecision == 1)
+							{
+							nextPlayer = myPassBall(myTeam, nextPlayer);
+							} 
+						else
+							{
+							int area = (int) (Math.random() * 3) + 1;
+							myPoints = myShootBall(myTeam, area, nextPlayer);
 							myTeamPoints = myTeamPoints + myPoints;
-							JOptionPane.showMessageDialog(frame, "Your teams has "
-									+ myTeamPoints + " points and the other team has "
-									+ computerTeamPoints + " points.");
+							JOptionPane.showMessageDialog(frame,
+									"Your team has " + myTeamPoints
+											+ " points and the other team has "
+											+ computerTeamPoints + " points.");
 							if (myPoints > 0)
 								{
 								myTeamHasBall = true;
-								JOptionPane.showMessageDialog(frame, "Since you made it, it's your ball at the top of the key");
+								if (myTeamPoints > 10)
+									{
+									JOptionPane.showMessageDialog(frame, "Congratulations you won!");
+									gameContinues = false;
+									System.exit(0);
+									break;
+									} 
+								else
+									{
+									JOptionPane
+									.showMessageDialog(frame,
+											"Since you made it, it's your ball at the top of the key");
+									}
+								
 								} 
 							else
 								{
 								myTeamHasBall = false;
 								computerTeamHasBall = true;
-								JOptionPane.showMessageDialog(frame, "The other team got the rebound and the ball is reset at the top of the key");
+								JOptionPane
+										.showMessageDialog(frame,
+												"The other team got the rebound and the ball is reset at the top of the key");
 								break;
 								}
-						 }
-					 } 
-				}
-			else
-				{
-				myPoints = myShootBall(myTeam, 3, nextPlayer);
-				myTeamPoints = myTeamPoints + myPoints;
-				JOptionPane.showMessageDialog(frame, "Your teams has "
-						+ myTeamPoints + " points and the other team has "
-						+ computerTeamPoints + " points.");
-				if (myPoints > 0)
-					{
-					myTeamHasBall = true;
-					JOptionPane.showMessageDialog(frame, "Since you made it, it's your ball at the top of the key");
+							}
+						}
 					} 
 				else
 					{
-					myTeamHasBall = false;
-					computerTeamHasBall = true;
-					JOptionPane.showMessageDialog(frame, "The other team got the rebound and the ball is reset at the top of the key");
-					break;
-					}
-				}
-			}
-		while (computerTeamHasBall == true)
-		{
-		int nextPlayer = 0;
-		JOptionPane.showMessageDialog(frame, dataOfPlayers.get(0)
-				.getNameOfPlayer()
-				+ " has the ball at the top of the key.");
-		Thread.sleep(2000);
-		int playerDecision = (int) (Math.random() * 2) + 1;
-		if (playerDecision == 1)
-			{
-			nextPlayer = computerPassBall(dataOfPlayers, nextPlayer);
-			int nextPlayerDecision =1;
-			while (nextPlayerDecision ==1)
-				 {
-				 Thread.sleep(2000);
-				 nextPlayerDecision = (int)(Math.random()*2)+1;
-				 if(nextPlayerDecision==1)
-					 {
-					 
-					 nextPlayer = computerPassBall(dataOfPlayers, nextPlayer);
-					 }
-				 else
-					 {
-					 computerPoints = computerShootBall(dataOfPlayers, 2, nextPlayer);
-						computerTeamPoints = computerTeamPoints + computerPoints;
-						JOptionPane.showMessageDialog(frame, "Your teams has "
-								+ myTeamPoints + " points and the other team has "
-								+ computerTeamPoints + " points.");
-						if (computerPoints > 0)
+					myPoints = myShootBall(myTeam, 3, nextPlayer);
+					myTeamPoints = myTeamPoints + myPoints;
+					JOptionPane.showMessageDialog(frame, "Your team has "
+							+ myTeamPoints + " points and the other team has "
+							+ computerTeamPoints + " points.");
+					if (myPoints > 0)
+						{
+						myTeamHasBall = true;
+						if (myTeamPoints > 10)
 							{
-							computerTeamHasBall = true;
-							JOptionPane.showMessageDialog(frame, "Since they made it, they get the ball at the top of the key");
+							JOptionPane.showMessageDialog(frame, "Congratulations you won!");
+							System.exit(0);
+							gameContinues = false;
+							break;
 							} 
 						else
 							{
-							computerTeamHasBall = false;
-							myTeamHasBall = true;
-							JOptionPane.showMessageDialog(frame, "Your team got the rebound and the ball is reset at the top of the key");
-							break;
+							JOptionPane
+							.showMessageDialog(frame,
+									"Since you made it, it's your ball at the top of the key.");
 							}
-					 }
-				 } 
-			}
-		else
-			{
-			computerPoints = computerShootBall(dataOfPlayers, 3, nextPlayer);
-			computerTeamPoints = computerTeamPoints + computerPoints;
-			JOptionPane.showMessageDialog(frame, "Your teams has "
-					+ myTeamPoints + " points and the other team has "
-					+ computerTeamPoints + " points.");
-			if (computerPoints > 0)
-				{
-				computerTeamHasBall = true;
-				JOptionPane.showMessageDialog(frame, "Since they made it, they get the ball at the top of the key");
-				} 
-			else
-				{
-				computerTeamHasBall = false;
-				myTeamHasBall = true;
-				JOptionPane.showMessageDialog(frame, "Your team got the rebound and the ball is reset at the top of the key");
-				break;
+						} 
+					else
+						{
+						myTeamHasBall = false;
+						computerTeamHasBall = true;
+						JOptionPane
+								.showMessageDialog(frame,
+										"The other team got the rebound and the ball is reset at the top of the key.");
+						break;
+						}
+					}
 				}
-			}
-		}
-		if(myTeamPoints>5)
-		{
-			JOptionPane.showMessageDialog(frame, "congradulations you won");	
-		}
-		else if (computerTeamPoints>5)
-		{
-			JOptionPane.showMessageDialog(frame, "sorry you lost");
-		}
-		else
-		{
-			
-		}
-		
-		}while (myTeamPoints < 5 || computerTeamPoints < 5);
+			while (computerTeamHasBall == true)
+				{
+				int nextPlayer = 0;
+				JOptionPane.showMessageDialog(frame, dataOfPlayers.get(0)
+						.getNameOfPlayer()
+						+ " has the ball at the top of the key.");
+				Thread.sleep(2000);
+				int playerDecision = (int) (Math.random() * 2) + 1;
+				if (playerDecision == 1)
+					{
+					nextPlayer = computerPassBall(dataOfPlayers, nextPlayer);
+					int nextPlayerDecision = 1;
+					while (nextPlayerDecision == 1)
+						{
+						Thread.sleep(2000);
+						nextPlayerDecision = (int) (Math.random() * 2) + 1;
+						if (nextPlayerDecision == 1)
+							{
+
+							nextPlayer = computerPassBall(dataOfPlayers,
+									nextPlayer);
+							} 
+					    else
+							{
+							int area = (int) (Math.random() * 3) + 1;
+							computerPoints = computerShootBall(dataOfPlayers, area, nextPlayer);
+							computerTeamPoints = computerTeamPoints
+									+ computerPoints;
+							JOptionPane.showMessageDialog(frame,
+									"Your team has " + myTeamPoints
+											+ " points and the other team has "
+											+ computerTeamPoints + " points.");
+							if (computerPoints > 0)
+								{
+								computerTeamHasBall = true;
+								if (computerTeamPoints > 10)
+									{
+									JOptionPane.showMessageDialog(frame, "Sorry you lost.");
+									System.exit(0);
+									gameContinues = false;
+									break;
+									} 
+								else
+									{
+									JOptionPane
+									.showMessageDialog(frame,
+											"Since they made it, they get the ball at the top of the key.");
+									}
+								
+								} 
+							else
+								{
+								computerTeamHasBall = false;
+								myTeamHasBall = true;
+								JOptionPane
+										.showMessageDialog(frame,
+												"Your team got the rebound and the ball is reset at the top of the key.");
+								break;
+								}
+							}
+						}
+					} 
+				else
+					{
+					computerPoints = computerShootBall(dataOfPlayers, 3,
+							nextPlayer);
+					computerTeamPoints = computerTeamPoints + computerPoints;
+					JOptionPane.showMessageDialog(frame, "Your team has "
+							+ myTeamPoints + " points and the other team has "
+							+ computerTeamPoints + " points.");
+					if (computerPoints > 0)
+						{
+						computerTeamHasBall = true;
+						if (computerTeamPoints > 10)
+							{
+							JOptionPane.showMessageDialog(frame, "Sorry you lost.");
+							gameContinues = false;
+							System.exit(0);
+							break;
+							} 
+						else
+							{
+							JOptionPane
+							.showMessageDialog(frame,
+									"Since they made it, they get the ball at the top of the key.");
+							}
+						} 
+					else
+						{
+						computerTeamHasBall = false;
+						myTeamHasBall = true;
+						JOptionPane
+								.showMessageDialog(frame,
+										"Your team got the rebound and the ball is reset at the top of the key");
+						break;
+						}
+					}
+				
+
+				}
+
+			} while (gameContinues == true);
 
 		}
 	}
 
-	
